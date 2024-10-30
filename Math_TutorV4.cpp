@@ -26,6 +26,8 @@ Program: MathTutor
 #include <ctime> //include the time library
 #include <cctype> // for isalpha
 #include <limits> //to use numeric_limits
+#include <vector>
+#include <iomanip>
 
 using namespace std; // so you dont have to type std:: in front of cin/cout/endl
 
@@ -51,6 +53,8 @@ int main() {
 
     string userName = "unknown"; // this will store the user's name entered
     string userInput = "unknown"; // Used to hold user's input to continuing the program
+
+       vector<vector<int>> questions;
 
     srand(time(0));
 
@@ -88,6 +92,16 @@ int main() {
     // After the user types their name, the program will display a welcome message
     cout << "Welcome " << userName << " to the silly simple math tutor!" << endl;
 
+    cout << "====================================" << endl;
+    cout << "           Summary Report                 " << endl;
+    cout << "===================================="<<endl;\
+    cout << setw(10) << left << "Level " ;
+    cout << setw(10) << left << "Question";
+    cout << setw(10) << right << "Attempts"<< endl;
+    cout << setfill('-') << setw(7) <<left << "";
+    cout << setfill('-') << setw(10) << left << " ";
+    cout << setfill('-') << setw(10) << right <<"";
+
     do { // Beginning of the do while loop that allows for the attempts system to work
         leftNum = rand() % (currentRange) + 1; //Assign random numbers to the variable left num between 1 and 10 inclusive
         rightNum = rand() % (currentRange) + 1; //Assign random numbers to the variable right num between 1 and 10 inclusive
@@ -122,6 +136,13 @@ int main() {
                 break;
         }
 
+        vector<int> row = {currentLevel, leftNum, mathSymbol, rightNum, correctAns};
+
+        for(int i = 0; i < questions.size(); i++) {
+            currentLevel = questions[i].at(0);
+            leftNum = questions[i].at(1);
+            mathSymbol = static_cast<char>(questions[i].at(2));
+        }
         // Check the user's answer & handles the leveling count
         for (int i = 1; i <= MAX_ATTEMPS; i++) {
             cout << "[Level #" << currentLevel << "] ";
@@ -141,8 +162,10 @@ int main() {
             if (userAns == correctAns) {
                 cout << "\tCorrect!" << endl;
                 totalCorrect++;
+                row.push_back(i);
                 break;
             } else {
+                ///row.push_back()
                 if (i == MAX_ATTEMPS) {
                     cout << "\tIncorrect! The correct answer was " << correctAns << endl;
                     totalIncorrect++;
