@@ -1,10 +1,10 @@
 /*********************************************************************************
-Program: MathTutor_V4
-  Programmers: Confidence Affang & Jacob Ferguson
-  Date: 10/30/24
-  GitHub URL: https://github.com/confidenceaffang/MathTutorv4
+Program: MathTutor
+  Programmers: Jacob Ferguson & Alejandro Rivera
+  Date: 10/16/24
+  GitHub URL: https://github.com/thesolejacobf/MathTutor_V3
   Description: This program is intended to be a math tutor design for a younger
-  audience. As of V4, It'll generate two random numbers between a set range that is
+  audience. As of V3, It'll generate two random numbers between a set range that is
   determined by the current level that the user is at (i.e A # with a max of 10 to a
   number with a max of 20), using the system clock as the seed, generate a random
   operator, do the math with both the random numbers and the operator to produce a
@@ -18,10 +18,7 @@ Program: MathTutor_V4
   This program, over the course of the user answering questions, will increase or
   decrease to a different "Level" based on the amount of questions the
   user gets right/wrong. The user get 3 attemps at every question, and if they fail
-  3 different questions, they level down. This also applies vice versa. After the user
-  decides to end the program, the program then displays a table displaying the stats
-  of the game, i.e. Average of correct answers, # of questions answered, and etc.
-  This is done using vectors and pushing back information of each input.
+  3 different questions, they level down. This also applies vice versa.
 **********************************************************************************/
 #include <iostream> //  for cin/cout
 #include <string>   //  needed for string data types
@@ -51,13 +48,14 @@ int main() {
     int totalIncorrect = 0;
     int currentLevel = 1; // Is used to make sure it starts at level 1
     int currentRange = LEVEL_RANGE_CHANGE; //This stores the current range of the math problems
+    int attempts = 0;
 
     char mathSymbol = '0';
 
     string userName = "unknown"; // this will store the user's name entered
     string userInput = "unknown"; // Used to hold user's input to continuing the program
 
-       vector<vector<int>> questions;
+    vector<vector<int>> questions;
 
     srand(time(0));
 
@@ -94,16 +92,6 @@ int main() {
     getline (cin, userName);
     // After the user types their name, the program will display a welcome message
     cout << "Welcome " << userName << " to the silly simple math tutor!" << endl;
-
-    cout << "====================================" << endl;
-    cout << "           Summary Report                 " << endl;
-    cout << "===================================="<<endl;\
-    cout << setw(10) << left << "Level " ;
-    cout << setw(10) << left << "Question";
-    cout << setw(10) << right << "Attempts"<< endl;
-    cout << setfill('-') << setw(7) <<left << "";
-    cout << setfill('-') << setw(10) << left << " ";
-    cout << setfill('-') << setw(10) << right <<"";
 
     do { // Beginning of the do while loop that allows for the attempts system to work
         leftNum = rand() % (currentRange) + 1; //Assign random numbers to the variable left num between 1 and 10 inclusive
@@ -171,12 +159,15 @@ int main() {
                 ///row.push_back()
                 if (i == MAX_ATTEMPS) {
                     cout << "\tIncorrect! The correct answer was " << correctAns << endl;
+                    row.push_back(0);
                     totalIncorrect++;
                 } else {
                     cout << "\tIncorrect! You have " << MAX_ATTEMPS - i << " attempts left." << endl;
                 }
             }
         }
+
+        questions.push_back(row);
 
         // Handles the leveling system. Increases with 3 correct answers and vice versa
         if (totalCorrect == 3) { // Increases user's level
@@ -222,6 +213,25 @@ int main() {
         }
 
     } while (userInput == "y" || userInput == "yes"); // End of the do while loop.
+
+    cout << "====================================" << endl;
+    cout << "           Summary Report           " << endl;
+    cout << "====================================" << endl;
+    cout << "Level       Question       Attempts " << endl;
+    cout << "-----    --------------    -------- " << endl;
+    totalCorrect = 0;
+    totalIncorrect = 0;
+
+    for (int i = 0; i < questions.size(); i++) {
+        currentLevel = questions.at(i).at(0);
+        leftNum = questions.at(i).at(1);
+        mathSymbol = static_cast<char>(questions.at(i).at(2));
+        rightNum = questions.at(i).at(3);
+        correctAns = questions.at(i).at(4);
+        attempts = questions.at(i).at(5);
+        cout << "  " << setw(2) << left << currentLevel << "  " << setw(5) << left << leftNum;
+    }
+
 
     cout << "Thank you for using the silly simple math tutor!" << endl; // bids the user farewell
 
