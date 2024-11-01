@@ -1,10 +1,10 @@
 /*********************************************************************************
-Program: MathTutor
-  Programmers: Jacob Ferguson & Alejandro Rivera
-  Date: 10/16/24
-  GitHub URL: https://github.com/thesolejacobf/MathTutor_V3
+Program: MathTutor_V4
+  Programmers: Confidence Affang & Jacob Ferguson
+  Date: 10/30/24
+  GitHub URL: https://github.com/confidenceaffang/MathTutorv4
   Description: This program is intended to be a math tutor design for a younger
-  audience. As of V3, It'll generate two random numbers between a set range that is
+  audience. As of V4, It'll generate two random numbers between a set range that is
   determined by the current level that the user is at (i.e A # with a max of 10 to a
   number with a max of 20), using the system clock as the seed, generate a random
   operator, do the math with both the random numbers and the operator to produce a
@@ -18,7 +18,10 @@ Program: MathTutor
   This program, over the course of the user answering questions, will increase or
   decrease to a different "Level" based on the amount of questions the
   user gets right/wrong. The user get 3 attemps at every question, and if they fail
-  3 different questions, they level down. This also applies vice versa.
+  3 different questions, they level down. This also applies vice versa. After the user
+  decides to end the program, the program then displays a table displaying the stats
+  of the game, i.e. Average of correct answers, # of questions answered, and etc.
+  This is done using vectors and pushing back information of each input.
 **********************************************************************************/
 #include <iostream> //  for cin/cout
 #include <string>   //  needed for string data types
