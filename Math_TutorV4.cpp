@@ -1,6 +1,6 @@
 /****************************************************************************
 Program:     MathTutorV3
-Programmers:Confidence Affang
+Programmers:Confidence Affang, Jacob Ferguson 
 Date:        10/24/2024
 Description: A simple silly math tutor program. It asks the user for their name,
 has an enum for the different math types, gives the user 3 attempts max for each round
