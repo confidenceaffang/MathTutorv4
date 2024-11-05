@@ -1,3 +1,19 @@
+/****************************************************************************
+Program:     MathTutorV3
+Programmers:Confidence Affang
+Date:        10/24/2024
+Description: A simple silly math tutor program. It asks the user for their name,
+has an enum for the different math types, gives the user 3 attempts max for each round
+it also increase the range of questions being asked by a constant value of 10 when levelling up.
+If the person gets 3 correct the person moves the next level and increases the range but if the person
+gets 3 incorrect the person moves down a level if the person is currently at a level greater than 1.
+After 3 attempts the program asks the user if they wish to continue and does continue and if they say no
+it terminates the program. It also has a 2 vectoe components that actually store the questions asked,
+the attempts, the correct answer and the level and also displays the summary report of the total questions
+asked, the total correct, total incorrect and the average correct answers which is rounded to the nearest integer
+Github URL: https://github.com/confidenceaffang/Math_Tutor_v4.git
+***************************************************************************/
+
 #include <iostream> //  for cin/cout
 #include <string>   //  needed for string data types
 #include <cstdlib>  // for generating random numbers
