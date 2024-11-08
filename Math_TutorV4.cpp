@@ -1,6 +1,6 @@
 /****************************************************************************
-Program:     MathTutorV3
-Programmers:Confidence Affang, Jacob Ferguson 
+Program:     MathTutorV4
+Programmers:Confidence Affang, Jacob Ferguson
 Date:        10/24/2024
 Description: A simple silly math tutor program. It asks the user for their name,
 has an enum for the different math types, gives the user 3 attempts max for each round
@@ -11,7 +11,7 @@ After 3 attempts the program asks the user if they wish to continue and does con
 it terminates the program. It also has a 2 vectoe components that actually store the questions asked,
 the attempts, the correct answer and the level and also displays the summary report of the total questions
 asked, the total correct, total incorrect and the average correct answers which is rounded to the nearest integer
-Github URL: https://github.com/confidenceaffang/Math_Tutor_v4.git
+Github URL:https://github.com/confidenceaffang/MathTutorv4.git
 ***************************************************************************/
 
 #include <iostream> //  for cin/cout
@@ -50,7 +50,7 @@ int main()
     int totalIncorrect = 0;                // creates and initializes the total incorect answers
     int currentLevel = 1;                  // creates and initializes the current level
     int currentRange = LEVEL_RANGE_CHANGE; // creates and initializes the range of values for current level
-    int attempts = 0;                      // creates and initializes the number of attempts
+    auto attempts = 0;                     // creates and initializes the number of attempts
     int sumTotalCorrect = 0;               // creates and initializes the sum total correct answers
     int sumTotalIncorrect = 0;             // creates and initializes the sum total incorrect answers
     int sumTotalQuestions = 0;             // creates and initializes the sum total questions asked
@@ -217,7 +217,16 @@ int main()
 
         cout << setw(10) << left << questionLevel
              << setw(2) << left << qLeftNum << " " << qMathSymbol << " " << setw(2) << left << qRightNum
-             << setw(2) << right << " = " << qCorrectAns << setw(11) << right << qAttempts << endl;
+             << setw(2) << right << " = " << qCorrectAns;
+
+        if (qAttempts >= 3)
+        {
+            cout << setw(11) << right << "    Incorrect" << endl;
+        }
+        else
+        {
+            cout << setw(11) << right << qAttempts << endl;
+        }
     }
     // print out summary work of questions answered
     cout << endl;
