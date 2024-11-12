@@ -197,12 +197,12 @@ int main()
     } while (userInput == "y" || userInput == "yes");
 
     // Display the summary report after user chooses not to continue
-    cout << "====================================" << endl;
-    cout << "           Summary Report           " << endl;
-    cout << "====================================" << endl;
+    cout << "=======================================" << endl;
+    cout << "              Summary Report           " << endl;
+    cout << "========================================" << endl;
     cout << setw(10) << left << "Level"
-         << setw(15) << left << "Question"
-         << setw(10) << left << "Attempts" << endl;
+         << setw(15) << left << "  Question"
+         << setw(10) << left << "  Attempts" << endl;
     cout << "--------  -------------  ---------------" << endl;
 
     averageCorrect = (static_cast<double>(sumTotalCorrect) / static_cast<double>(sumTotalQuestions)) * 100;
@@ -221,11 +221,11 @@ int main()
 
         if (qAttempts >= 3)
         {
-            cout << setw(11) << right << "    Incorrect" << endl;
+            cout << setw(15) << "Incorrect" << endl;
         }
         else
         {
-            cout << setw(11) << right << qAttempts << endl;
+            cout << setw(11) << qAttempts << endl;
         }
     }
     // print out summary work of questions answered
